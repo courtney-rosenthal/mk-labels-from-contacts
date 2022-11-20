@@ -1,4 +1,6 @@
 contacts.csv
 .idea
+
 labelnation
 labelnation-*
+!labelnation-*.tar.gz
