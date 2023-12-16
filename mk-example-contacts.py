@@ -3,13 +3,18 @@
 # Generates example data that can be used for testing.
 #
 
-# Generate this many addresses.
-NUM_ENTRIES = 20
-
+import argparse
 from sys import stdout
 from random import random
 import csv
 from faker import Faker
+
+parser = argparse.ArgumentParser(description = 'Generate example contacts.')
+parser.add_argument('-n', '--num-entries', default = 20, type = int)
+args = parser.parse_args()
+if (args.num_entries <= 0):
+  print("ERROR: bad num-entries value")
+  exit(1)
 
 fake = Faker()
 
@@ -29,7 +34,7 @@ def pick_randomly(chance, choice1, choice2):
     return choice1 if (random() <= chance) else choice2
 
 
-for i in range(NUM_ENTRIES):
+for i in range(args.num_entries):
     writer.writerow([
         fake.name(),
         fake.street_address(),

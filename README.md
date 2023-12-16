@@ -72,7 +72,9 @@ printer.
 The _example-contacts.csv_ file is sample data that can be used to test the 
 printing process. It was generated with _mk-example-contacts.py_
 
-    python3 mk-example-contacts.py >example-data.ps
+    python3 mk-example-contacts.py [--num-entries NUM_ENTRIES] >example-data.ps
+
+(Default NUM_ENTRIES is 20.)
 
 This utility requires the _Faker_ package. If you want to generate example 
 data (but you don't need this for actual label generation), do:
