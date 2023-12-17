@@ -7,15 +7,15 @@ onto adhesive address label sheets.
 
 ## Procedure
 
-The process for making your labels is:
+The procedure for making your labels is:
 
 1. Unbundle the _LabelNation_ package.
 2. Export selected Google Contacts to a CSV file.
-3. Process the CSV file with _mk-labels-from-contacts_ to get a data file.
-4. Process the data file with LabelNation to get a PS (PostScript) file.
+3. Run _process-contacts.py_ on the CSV file to produce a data file.
+4. Run _LabelNation_ on the data file to produce a PS (PostScript) file.
 5. Print the PS file onto sheets of blank labels.
 
-### Download LabelNation
+### Unbundle LabelNation
 
 To unbundle the _LabelNation_ package, do:
 
@@ -43,7 +43,7 @@ export that group.
   * Choose "Export as Google CSV".
   * Click "Export" and save to a local file (default "contacts.csv").
 
-### Process the Contacts
+### Run process-contacts.py
 
 Next, run:
 
@@ -52,7 +52,7 @@ Next, run:
 This will create a data file that contains the contacts and addresses.
 Open this file with an editor, review the results, and make any corrections.
 
-### Generate Labels Printout
+### Run LabelNation
 
 Next, run:
 
@@ -65,17 +65,15 @@ Next:
 
     cp run-labelnation.defs.example run-labelnation.defs
 
-Next, edit the _run-labelnation.defs_ file, set LABEL_TYPE to the value 
+Then, edit the _run-labelnation.defs_ file, set LABEL_TYPE to the value 
 selected. Make any other adjustments as required.
 
-Next, run:
+Finally, run:
 
     sh run-labelnation.sh <contacts.txt >labels.ps
 
-This will generate your labels to a PostScript file.
-
-You should inspect the _labels.ps_ file (with a PostScript viewer) to verify it 
-is ok. If it is, go ahead and print it.
+This will generate your labels to a PostScript file.  Inspect the _labels.ps_
+file with a PostScript viewer to verify it is ok. If it is, go ahead and print it.
 
 
 ## FAQ
@@ -110,7 +108,8 @@ label edges to be. Print this onto plain paper and inspect for correctness.
 Read the section "What To Do If The Text Is A Little Bit Off From The Labels"
 in the document: https://www.red-bean.com/labelnation/help.txt
 
-Set your margin adjustments with something like:
+Edit the _run-labelnation.defs_ file and set your margin adjustments with 
+something like:
 
     LABELNATION_OPTIONS="--left-margin 15 --bottom-margin 40"
 
