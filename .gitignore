@@ -1,6 +1,9 @@
 contacts.csv
-.idea
+labels.ps
+run-labelnation.defs
 
 labelnation
 labelnation-*
 !labelnation-*.tar.gz
+
+.idea
