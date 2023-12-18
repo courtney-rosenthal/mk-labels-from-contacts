@@ -5,13 +5,16 @@ The _mk-labels-from-contacts_ processes a Google Contacts export to a date file.
 This data file can be fed into the _LabelNation_ utilty by Karl Fogel to print
 onto adhesive address label sheets.
 
+If a contact has a Spouse, Partner, or Domestic Partner in the first 
+relation field then both names will be listed on the label.
+
 ## Procedure
 
 The procedure for making your labels is:
 
 1. Unbundle the _LabelNation_ package.
 2. Export selected Google Contacts to a CSV file.
-3. Run _process-contacts.py_ on the CSV file to produce a data file.
+3. Run _process_contacts.py_ on the CSV file to produce a data file.
 4. Run _LabelNation_ on the data file to produce a PS (PostScript) file.
 5. Print the PS file onto sheets of blank labels.
 
@@ -43,11 +46,11 @@ export that group.
   * Choose "Export as Google CSV".
   * Click "Export" and save to a local file (default "contacts.csv").
 
-### Run process-contacts.py
+### Run process_contacts.py
 
 Next, run:
 
-    python3 process-contacts.py <contacts.csv >contacts.txt
+    python3 process_contacts.py <contacts.csv >contacts.txt
 
 This will create a data file that contains the contacts and addresses.
 Open this file with an editor, review the results, and make any corrections.
