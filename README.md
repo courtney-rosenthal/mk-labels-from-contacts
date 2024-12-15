@@ -1,36 +1,20 @@
 # mk-labels-from-contacts
-Generate address labels from a Google Contacts export.
 
-The _mk-labels-from-contacts_ processes a Google Contacts export to a date file.
-This data file can be fed into the _LabelNation_ utilty by Karl Fogel to print
-onto adhesive address label sheets.
+Generate mail merge data from a Google Contacts export.
 
-If a contact has a Spouse, Partner, or Domestic Partner in the first 
-relation field then both names will be listed on the label.
+The input is a CSV file, produced by Google Contacts export.
 
-## Procedure
+The output is a CSV file that can be consumed by utilities such as [ gLabels 
+](https://help.gnome.org/users/glabels/stable/).
 
-The procedure for making your labels is:
+Example:
+```
+python3 process_contacts.py < contacts.csv > labels.csv
+```
 
-1. Unbundle the _LabelNation_ package.
-2. Export selected Google Contacts to a CSV file.
-3. Run _process_contacts.py_ on the CSV file to produce a data file.
-4. Run _LabelNation_ on the data file to produce a PS (PostScript) file.
-5. Print the PS file onto sheets of blank labels.
+In this example _contacts.csv_ is the export from Google Contacts, and 
+_labels.csv_ will be imported into the utility you use for mail merge.
 
-### Unbundle LabelNation
-
-To unbundle the _LabelNation_ package, do:
-
-    tar xvf labelnation-1.231.tar.gz
-
-This is version 1.231. If a newer version is available, you may prefer to 
-retrieve and use that.
-
-Links:
-
-  * Home page: https://www.red-bean.com/labelnation/
-  * Source code: https://code.librehq.com/kfogel/labelnation
 
 ### Export Contacts
 
@@ -46,37 +30,24 @@ export that group.
   * Choose "Export as Google CSV".
   * Click "Export" and save to a local file (default "contacts.csv").
 
-### Run process_contacts.py
+### Using gLabels
 
-Next, run:
+To generate address labels using _gLabels_, once you have run 
+_process_contacts.py_, do:
 
-    python3 process_contacts.py <contacts.csv >contacts.txt
+* Create a new project with your selected label type
+* Select: Object -> Merge Properties
+    * set format: CSV with keys
+    * select Location: _labels.csv_
+* In the label design, select a text box that fills the label
 
-This will create a data file that contains the contacts and addresses.
-Open this file with an editor, review the results, and make any corrections.
-
-### Run LabelNation
-
-Next, run:
-
-    python3 labelnation-*/labelnation --list-types
-
-This will list all the supported label types (like "Avery-5162"). Identify
-which label type you will be using.
-
-Next:
-
-    cp run-labelnation.defs.example run-labelnation.defs
-
-Then, edit the _run-labelnation.defs_ file, set LABEL_TYPE to the value 
-selected. Make any other adjustments as required.
-
-Finally, run:
-
-    sh run-labelnation.sh <contacts.txt >labels.ps
-
-This will generate your labels to a PostScript file.  Inspect the _labels.ps_
-file with a PostScript viewer to verify it is ok. If it is, go ahead and print it.
+In the label text box, enter as your template:
+```
+${F1}
+${F2}
+${F3}
+${F4}
+```
 
 
 ## FAQ
@@ -95,26 +66,9 @@ Run:
     pip install Faker
     python3 mk-example-contacts.py --num-entries 37 >whatever.csv
 
-**Can I test first on plain paper?**
+**Are there test cases?**
 
-Yes, to avoid wasting labels it would be good to test first on plain paper.
-
-Edit the _run-labelnation.defs_ file and add:
-
-    LABELNATION_OPTIONS="--show-bounding-box"
-
-Now, when you run _run-labelnation.sh_ it will draw a box where it expects the
-label edges to be. Print this onto plain paper and inspect for correctness.
-
-**What do I do if the labels are misaligned?**
-
-Read the section "What To Do If The Text Is A Little Bit Off From The Labels"
-in the document: https://www.red-bean.com/labelnation/help.txt
-
-Edit the _run-labelnation.defs_ file and set your margin adjustments with 
-something like:
-
-    LABELNATION_OPTIONS="--left-margin 15 --bottom-margin 40"
+Yes. Just run: ```pytest```
 
 
 ## Author

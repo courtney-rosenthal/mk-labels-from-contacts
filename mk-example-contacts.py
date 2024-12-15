@@ -20,7 +20,8 @@ fake = Faker()
 
 writer = csv.writer(stdout)
 writer.writerow([
-    'Name',
+    'First Name',
+    'Last Name',
     'Address 1 - Street',
     'Address 1 - City',
     'Address 1 - PO Box',
@@ -36,7 +37,8 @@ def pick_randomly(chance, choice1, choice2):
 
 for i in range(args.num_entries):
     writer.writerow([
-        fake.name(),
+        fake.first_name(),
+        fake.last_name(),
         fake.street_address(),
         fake.city(),
         "", # 'Address 1 - PO Box',
