@@ -55,3 +55,7 @@ def test_process_contact():
         'Rodneyville, Michigan 38619',
         None
     ]
+
+def test_filter_out_empties():
+    a = filter_out_empties([None, "A", " ", "", "B", ""])
+    assert(a) == ["A", " ", "B"]

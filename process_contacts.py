@@ -67,11 +67,14 @@ def process_contact(contact):
     get_country(contact)
   ]
 
+def filter_out_empties(a):
+  return [x for x in a if x]
+
 def main():
   writer = csv.writer(sys.stdout)
-  writer.writerow(["F1", "F2", "F3", "F4", "F5"])
-  for contacy in csv.DictReader(sys.stdin):
-    results = [x for x in process_contact(contacy) if x]
+  writer.writerow(["F1", "F2", "F3", "F4"])
+  for contact in csv.DictReader(sys.stdin):
+    results = filter_out_empties(process_contact(contact))
     writer.writerow(results)
 
 if __name__ == "__main__":
