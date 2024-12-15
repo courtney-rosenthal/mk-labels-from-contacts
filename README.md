@@ -56,6 +56,10 @@ ${F4}
 
 Yes. There is an example Google Contacts export in:  _example-contacts.csv_ 
 
+**What results from processing the example-contacts.csv file?**
+
+It should look like _example-labels.csv_.
+
 **Can I generate sample data with 37 addresses?**
 
 Yes. You may wish to do this if the provided _example-contacts.csv_ does not
