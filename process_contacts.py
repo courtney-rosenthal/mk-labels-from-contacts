@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 #
-# process-contacts.py - Generate LabelNation address input from a Google Contacts export.
+# process-contacts.py - Generate mail merge input from a Google Contacts export.
+#
+# I use the processed output with the "gLabels" program.
 #
 # There is an "Address 1 - Formatted" field in the CSV which ought to
 # be what we want -- but it does some weird things (like combining the
@@ -13,9 +15,6 @@ import csv
 
 # The country field won't be printed if it matches this value.
 MY_COUNTRY = "US"
-
-# Separates label contents in the LabelNation input.
-LABEL_SEPERATOR = "---"
 
 # Field names that identify related person
 RELATION_TYPE = 'Relation 1 - Label'
