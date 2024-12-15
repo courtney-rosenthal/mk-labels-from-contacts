@@ -1,5 +1,8 @@
 # mk-labels-from-contacts
 
+Live result of most recent test run: ![Python Tests](https://github.com/courtney-rosenthal/mk-labels-from-contacts/actions/workflows/python-tests.yml/badge.svg)
+
+
 Generate mail merge data from a Google Contacts export.
 
 The input is a CSV file, produced by Google Contacts export.
